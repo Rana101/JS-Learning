@@ -26,20 +26,46 @@ function createLogEntry(operatorName, previousResult, enteredNumber, result) {
 }
 
 /*******Calculation functions ********/
-function add() {
+
+function calculateResult(operator) {
+
   const enteredNumber = getUserInput();
+  
+  if (
+    operator !== 'ADD' &&
+    operator !== 'SUBTRACT' &&
+    operator !== 'MULIPLY' &&
+    operator !== 'DIVIDE' ||
+    !enteredNumber
+  ) {
+    return;
+  }
+
   const previousResult = currentResult;
-  currentResult += enteredNumber;
-  showCalcLog('+', previousResult, enteredNumber);
-  createLogEntry("ADD", previousResult, enteredNumber, currentResult);
+  let mathOperator;
+  if (operator === 'ADD') {
+    currentResult += enteredNumber;
+    mathOperator = '+';
+  } else if (operator === 'SUBTRACT') {
+    currentResult -= enteredNumber;
+    mathOperator = '-';
+  } else if (operator === 'MULTIPLY') {
+    currentResult *= enteredNumber;
+    mathOperator = '*';
+  } else if (operator === 'DIVIDE') {
+    currentResult /= enteredNumber;
+    mathOperator = '/';
+  }
+  showCalcLog(mathOperator, previousResult, enteredNumber);
+  createLogEntry(operator, previousResult, enteredNumber, currentResult);
+}
+
+function add() {
+  calculateResult('ADD');
 }
 
 function subtract() {
-  const enteredNumber = getUserInput();
-  const previousResult = currentResult;
-  currentResult -= enteredNumber;
-  showCalcLog('-', previousResult, enteredNumber);
-  createLogEntry("SUBTRACT", previousResult, enteredNumber, currentResult);
+  calculateResult('SUBTRACT');
 }
 
 function multiply() {
