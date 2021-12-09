@@ -64,3 +64,22 @@ const employee = {
 }
 
 console.log(employee);
+
+
+//spread operator for object
+//most of it work similar to arrays
+
+const obj = {
+  name: "max",
+  age: 30
+};
+
+const newObj = { ...obj };
+console.log(newObj);
+//we can also save an object to a new object using assign
+const anotherObj = Object.assign({},obj);
+console.log(anotherObj);
+
+//object destructuring
+const {name, age} = obj;
+console.log(name, age);
